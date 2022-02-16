@@ -1,6 +1,10 @@
 package entity
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/Msksgm/go-itddd-03-entity/iterrors"
+)
 
 type userName string
 
@@ -12,12 +16,13 @@ func NewUserName(v string) (*userName, error) {
 	return &userName, nil
 }
 
-func (userName *userName) validate(v userName) error {
+func (userName *userName) validate(v userName) (err error) {
+	defer iterrors.Wrap(&err, "userName.validate(%q)", v)
 	if v == "" {
-		return fmt.Errorf("氏名は必須です")
+		return fmt.Errorf("userName is required")
 	}
 	if len(v) < 3 {
-		return fmt.Errorf("氏名は3文字以上にしてください")
+		return fmt.Errorf("userName %v is less than three characters long", *userName)
 	}
 	return nil
 }

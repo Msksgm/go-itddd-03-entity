@@ -2,6 +2,8 @@ package entity
 
 import (
 	"fmt"
+
+	"github.com/Msksgm/go-itddd-03-entity/iterrors"
 )
 
 type userId string
@@ -14,9 +16,10 @@ func NewUserId(v string) (*userId, error) {
 	return &userId, nil
 }
 
-func (userId *userId) validate(id userId) error {
+func (userId *userId) validate(id userId) (err error) {
+	defer iterrors.Wrap(&err, "userId.validate(%q)", id)
 	if id == "" {
-		return fmt.Errorf("ユーザーidは必須です")
+		return fmt.Errorf("userId is required")
 	}
 	return nil
 }
