@@ -1,13 +1,22 @@
 package entity
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type userId string
 
 func NewUserId(v string) (*userId, error) {
-	if v == "" {
-		return nil, fmt.Errorf("newUserId: %v is invalid for newUserID", v)
-	}
 	userId := userId(v)
+	if err := userId.validate(userId); err != nil {
+		return nil, err
+	}
 	return &userId, nil
+}
+
+func (userId *userId) validate(id userId) error {
+	if id == "" {
+		return fmt.Errorf("ユーザーidは必須です")
+	}
+	return nil
 }
