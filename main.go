@@ -10,32 +10,19 @@ import (
 func main() {
 	var user *entity.User
 
-	rightUserId, err := entity.NewUserId("a")
+	userId, err := entity.NewUserId("a")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	rightUserName, err := entity.NewUserName("right")
+	userName, err := entity.NewUserName("name")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	right, err := user.NewUser(*rightUserId, *rightUserName)
+	nerUser, err := user.NewUser(*userId, *userName)
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(right)
-
-	leftUserId, err := entity.NewUserId("b")
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	left, err := user.NewUser(*leftUserId, "")
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Println(left)
-
-	fmt.Println(left.Equals(*right))
+	fmt.Println(nerUser)
 }
