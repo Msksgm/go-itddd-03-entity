@@ -8,21 +8,14 @@ import (
 )
 
 func main() {
-	var user *entity.User
-
 	userId, err := entity.NewUserId("a")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	userName, err := entity.NewUserName("name")
+	newUser, err := entity.NewUser(*userId, "name")
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	nerUser, err := user.NewUser(*userId, *userName)
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Println(nerUser)
+	fmt.Println(newUser)
 }
