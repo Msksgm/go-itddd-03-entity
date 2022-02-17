@@ -1,18 +1,27 @@
 package entity
 
+import (
+	"fmt"
+
+	"github.com/Msksgm/go-itddd-03-entity/iterrors"
+)
+
 type User struct {
 	id   userId
-	name userName
+	name string
 }
 
-func (user *User) NewUser(userId userId, userName userName) (*User, error) {
+func NewUser(userId userId, name string) (*User, error) {
+	user := &User{id: userId, name: name}
+
 	if err := userId.validate(userId); err != nil {
 		return nil, err
 	}
-	if err := userName.validate(userName); err != nil {
+
+	if err := user.ChangeUserName(name); err != nil {
 		return nil, err
 	}
-	return &User{id: userId, name: userName}, nil
+	return user, nil
 }
 
 func (user *User) ChangeUserName(name string) (err error) {
