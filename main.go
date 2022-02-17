@@ -4,16 +4,16 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/Msksgm/go-itddd-03-entity/domain/entity"
+	"github.com/Msksgm/go-itddd-03-entity/domain/model/user"
 )
 
 func main() {
-	userId, err := entity.NewUserId("a")
+	userId, err := user.NewUserId("a")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	newUser, err := entity.NewUser(*userId, "name")
+	newUser, err := user.NewUser(*userId, "name")
 	if err != nil {
 		log.Fatal(err)
 	}
