@@ -8,8 +8,8 @@ import (
 
 type userId string
 
-func NewUserId(v string) (*userId, error) {
-	userId := userId(v)
+func NewUserId(id string) (*userId, error) {
+	userId := userId(id)
 	if err := userId.validate(userId); err != nil {
 		return nil, err
 	}
