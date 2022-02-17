@@ -6,19 +6,19 @@ import (
 	"github.com/Msksgm/go-itddd-03-entity/iterrors"
 )
 
-type userId string
+type UserId string
 
-func NewUserId(id string) (*userId, error) {
-	userId := userId(id)
-	if err := userId.validate(userId); err != nil {
+func NewUserId(id string) (*UserId, error) {
+	UserId := UserId(id)
+	if err := UserId.validate(UserId); err != nil {
 		return nil, err
 	}
-	return &userId, nil
+	return &UserId, nil
 }
 
-func (userId *userId) validate(id userId) (err error) {
-	defer iterrors.Wrap(&err, "userId.validate(%q)", id)
-	if id == "" {
+func (UserId *UserId) validate(userId UserId) (err error) {
+	defer iterrors.Wrap(&err, "UserId.validate(%q)", userId)
+	if userId == "" {
 		return fmt.Errorf("userId is required")
 	}
 	return nil

@@ -7,12 +7,12 @@ import (
 )
 
 type User struct {
-	id   userId
-	name string
+	userId UserId
+	name   string
 }
 
-func NewUser(userId userId, name string) (*User, error) {
-	user := &User{id: userId, name: name}
+func NewUser(userId UserId, name string) (*User, error) {
+	user := &User{userId: userId, name: name}
 
 	if err := userId.validate(userId); err != nil {
 		return nil, err
@@ -40,7 +40,7 @@ func (user *User) Equals(other User) bool {
 	if user == &other {
 		return true
 	}
-	if user.id == other.id {
+	if user.userId == other.userId {
 		return true
 	}
 	return false
