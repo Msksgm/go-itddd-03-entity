@@ -27,10 +27,10 @@ func NewUser(userId userId, name string) (*User, error) {
 func (user *User) ChangeUserName(name string) (err error) {
 	defer iterrors.Wrap(&err, "user.ChangeUserName(%q)", name)
 	if name == "" {
-		return fmt.Errorf("userName is required")
+		return fmt.Errorf("name is required")
 	}
 	if len(name) < 3 {
-		return fmt.Errorf("userName %v is less than three characters long", name)
+		return fmt.Errorf("name %v is less than three characters long", name)
 	}
 	user.name = name
 	return nil
