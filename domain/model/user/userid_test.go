@@ -1,21 +1,21 @@
 package user
 
 import (
+	"reflect"
 	"testing"
-
-	"github.com/google/go-cmp/cmp"
 )
 
 func TestNewUserId(t *testing.T) {
-	got, err := NewUserId("id")
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	want := UserId("id")
-	if !cmp.Equal(*got, want) {
-		t.Fatalf("got %v, want %v", got, want)
-	}
+	t.Run("success", func(t *testing.T) {
+		id := "id"
+		userId, err := NewUserId(id)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if !reflect.DeepEqual(userId.userId, id) {
+			t.Errorf("userId.userId %v should be %v", userId.userId, id)
+		}
+	})
 }
 
 func TestValidateUserId(t *testing.T) {
