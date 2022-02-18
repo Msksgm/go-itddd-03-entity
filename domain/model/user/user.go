@@ -2,6 +2,7 @@ package user
 
 import (
 	"fmt"
+	"reflect"
 
 	"github.com/Msksgm/go-itddd-03-entity/iterrors"
 )
@@ -32,6 +33,6 @@ func (user *User) ChangeUserName(name string) (err error) {
 	return nil
 }
 
-func (user *User) Equals(other User) bool {
-	return user.userId == other.userId
+func (user *User) Equals(other *User) bool {
+	return reflect.DeepEqual(user.userId, other.userId)
 }
