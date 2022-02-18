@@ -24,6 +24,36 @@ func TestChangeUserName(t *testing.T) {
 			t.Errorf("got %v, want changedName", user.name)
 		}
 	})
+	t.Run("failed userName is empty", func(t *testing.T) {
+		userId, err := NewUserId("id")
+		if err != nil {
+			t.Fatal(err)
+		}
+		name := "name"
+		user, err := NewUser(*userId, name)
+		if err != nil {
+			t.Fatal(err)
+		}
+
+		if err := user.ChangeUserName(""); (err != nil) != true {
+			t.Errorf("empty is not perimetted for userName")
+		}
+	})
+	t.Run("failed userName is less than three charcters", func(t *testing.T) {
+		userId, err := NewUserId("id")
+		if err != nil {
+			t.Fatal(err)
+		}
+		name := "name"
+		user, err := NewUser(*userId, name)
+		if err != nil {
+			t.Fatal(err)
+		}
+
+		if err := user.ChangeUserName("na"); (err != nil) != true {
+			t.Errorf("userName is not perimetted less than three charcters ")
+		}
+	})
 }
 
 func TestEquals(t *testing.T) {
