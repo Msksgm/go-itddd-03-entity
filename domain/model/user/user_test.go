@@ -4,6 +4,27 @@ import (
 	"testing"
 )
 
+func TestChangeUserName(t *testing.T) {
+	t.Run("success", func(t *testing.T) {
+		userId, err := NewUserId("id")
+		if err != nil {
+			t.Fatal(err)
+		}
+		name := "name"
+		user, err := NewUser(*userId, name)
+		if err != nil {
+			t.Fatal(err)
+		}
+
+		if err := user.ChangeUserName("changedName"); err != nil {
+			t.Fatal(err)
+		}
+		if !reflect.DeepEqual(user.name, "changedName") {
+			t.Errorf("got %v, want changedName", user.name)
+		}
+	})
+}
+
 func TestEquals(t *testing.T) {
 	t.Run("success", func(t *testing.T) {
 		userId1, err := NewUserId("id")
