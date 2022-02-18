@@ -16,6 +16,12 @@ func TestNewUserId(t *testing.T) {
 			t.Errorf("userId.userId %v should be %v", userId.userId, id)
 		}
 	})
+	t.Run("fail userId is empty", func(t *testing.T) {
+		userId, err := NewUserId("")
+		if (err != nil) != true || userId != nil {
+			t.Errorf("empty is not perimetted for userId")
+		}
+	})
 }
 
 func TestValidateUserId(t *testing.T) {
