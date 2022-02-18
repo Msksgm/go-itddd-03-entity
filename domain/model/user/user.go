@@ -33,11 +33,5 @@ func (user *User) ChangeUserName(name string) (err error) {
 }
 
 func (user *User) Equals(other User) bool {
-	if user == &other {
-		return true
-	}
-	if user.userId == other.userId {
-		return true
-	}
-	return false
+	return user.userId == other.userId
 }
