@@ -24,7 +24,7 @@ func TestChangeUserName(t *testing.T) {
 			t.Errorf("got %v, want changedName", user.name)
 		}
 	})
-	t.Run("failed userName is empty", func(t *testing.T) {
+	t.Run("fail userName is empty", func(t *testing.T) {
 		userId, err := NewUserId("id")
 		if err != nil {
 			t.Fatal(err)
@@ -35,11 +35,13 @@ func TestChangeUserName(t *testing.T) {
 			t.Fatal(err)
 		}
 
-		if err := user.ChangeUserName(""); (err != nil) != true {
-			t.Errorf("empty is not perimetted for userName")
+		err = user.ChangeUserName("")
+		want := "user.ChangeUserName(\"\"): name is required"
+		if got := err.Error(); got != want {
+			t.Errorf("got %s, want %s", got, want)
 		}
 	})
-	t.Run("failed userName is less than three charcters", func(t *testing.T) {
+	t.Run("fail userName is less than three charcters", func(t *testing.T) {
 		userId, err := NewUserId("id")
 		if err != nil {
 			t.Fatal(err)
@@ -49,9 +51,10 @@ func TestChangeUserName(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-
-		if err := user.ChangeUserName("na"); (err != nil) != true {
-			t.Errorf("userName is not perimetted less than three charcters ")
+		err = user.ChangeUserName("na")
+		want := "user.ChangeUserName(\"na\"): name na is less than three characters long"
+		if got := err.Error(); got != want {
+			t.Errorf("got %s, want %s", got, want)
 		}
 	})
 }
