@@ -23,19 +23,3 @@ func TestNewUserId(t *testing.T) {
 		}
 	})
 }
-
-func TestValidateUserId(t *testing.T) {
-	for _, test := range []struct {
-		in      string
-		wantErr bool
-	}{
-		{"", true},
-		{"id", false},
-	} {
-		userId := UserId(test.in)
-		err := userId.validate(userId)
-		if (err != nil) != test.wantErr {
-			t.Errorf("ValidateAppVersion(%q) = %v, want error = %t", test.in, err, test.wantErr)
-		}
-	}
-}
