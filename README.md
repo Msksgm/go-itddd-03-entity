@@ -39,8 +39,18 @@ exit status 1
 # テスト
 
 ```bash
-> go test -v ./...
-?   	github.com/Msksgm/go-itddd-03-entity	[no test files]
+> go test -v -count=1 ./...
+?       github.com/Msksgm/go-itddd-03-entity    [no test files]
+=== RUN   TestNewUser
+=== RUN   TestNewUser/success
+=== RUN   TestNewUser/fail_name_is_empty
+=== RUN   TestNewUser/fail_name_is_empty#01
+=== RUN   TestNewUser/fail_name_is_less_than_three_characters
+--- PASS: TestNewUser (0.00s)
+    --- PASS: TestNewUser/success (0.00s)
+    --- PASS: TestNewUser/fail_name_is_empty (0.00s)
+    --- PASS: TestNewUser/fail_name_is_empty#01 (0.00s)
+    --- PASS: TestNewUser/fail_name_is_less_than_three_characters (0.00s)
 === RUN   TestChangeUserName
 === RUN   TestChangeUserName/success
 === RUN   TestChangeUserName/fail_userName_is_empty
@@ -62,9 +72,9 @@ exit status 1
     --- PASS: TestNewUserId/success (0.00s)
     --- PASS: TestNewUserId/fail_userId_is_empty (0.00s)
 PASS
-ok  	github.com/Msksgm/go-itddd-03-entity/domain/model/user	(cached)
+ok      github.com/Msksgm/go-itddd-03-entity/domain/model/user  0.456s
 === RUN   TestWrap
 --- PASS: TestWrap (0.00s)
 PASS
-ok  	github.com/Msksgm/go-itddd-03-entity/iterrors	(cached)
+ok      github.com/Msksgm/go-itddd-03-entity/iterrors   0.284s
 ```
