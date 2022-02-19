@@ -36,7 +36,7 @@ func TestChangeUserName(t *testing.T) {
 		}
 
 		err = user.ChangeUserName("")
-		want := "user.ChangeUserName(\"\"): name is required"
+		want := "user.ChangeUserName(\"\"): user.go validateUserName(\"\"): name is required"
 		if got := err.Error(); got != want {
 			t.Errorf("got %s, want %s", got, want)
 		}
@@ -52,7 +52,7 @@ func TestChangeUserName(t *testing.T) {
 			t.Fatal(err)
 		}
 		err = user.ChangeUserName("na")
-		want := "user.ChangeUserName(\"na\"): name na is less than three characters long"
+		want := "user.ChangeUserName(\"na\"): user.go validateUserName(\"na\"): name na is less than three characters long"
 		if got := err.Error(); got != want {
 			t.Errorf("got %s, want %s", got, want)
 		}
