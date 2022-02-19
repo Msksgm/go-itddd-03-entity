@@ -106,7 +106,7 @@ func TestEquals(t *testing.T) {
 		}
 
 		if user1.Equals(user2) {
-			t.Errorf("%v must not be equal to %v", &user1, &user2)
+			t.Errorf("%v must not be equal to %v", user1, user2)
 		}
 	})
 }
