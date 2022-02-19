@@ -19,33 +19,16 @@ func TestChangeUserName(t *testing.T) {
 		}
 	})
 	t.Run("fail userName is empty", func(t *testing.T) {
-		userId, err := NewUserId("id")
-		if err != nil {
-			t.Fatal(err)
-		}
-		name := "name"
-		user, err := NewUser(*userId, name)
-		if err != nil {
-			t.Fatal(err)
-		}
-
-		err = user.ChangeUserName("")
+		user := &User{userId: UserId{id: "id"}, name: "name"}
+		err := user.ChangeUserName("")
 		want := "user.ChangeUserName(\"\"): name is required"
 		if got := err.Error(); got != want {
 			t.Errorf("got %s, want %s", got, want)
 		}
 	})
 	t.Run("fail userName is less than three charcters", func(t *testing.T) {
-		userId, err := NewUserId("id")
-		if err != nil {
-			t.Fatal(err)
-		}
-		name := "name"
-		user, err := NewUser(*userId, name)
-		if err != nil {
-			t.Fatal(err)
-		}
-		err = user.ChangeUserName("na")
+		user := &User{userId: UserId{id: "id"}, name: "name"}
+		err := user.ChangeUserName("na")
 		want := "user.ChangeUserName(\"na\"): name na is less than three characters long"
 		if got := err.Error(); got != want {
 			t.Errorf("got %s, want %s", got, want)
