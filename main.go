@@ -15,12 +15,13 @@ var (
 
 func main() {
 	flag.Parse()
-	userId, err := user.NewUserId(*id)
-	if err != nil {
-		log.Fatal(err)
-	}
+	// userId := user.UserId(*id)
+	// userId, err := user.NewUserId(*id)
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
 
-	newUser, err := user.NewUser(*userId, *name)
+	newUser, err := user.NewUser("", *name)
 	if err != nil {
 		log.Fatal(err)
 	}
