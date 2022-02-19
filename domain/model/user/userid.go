@@ -8,18 +8,11 @@ import (
 
 type UserId string
 
-func NewUserId(v string) (*UserId, error) {
-	userId := UserId(v)
-	if err := userId.validate(userId); err != nil {
-		return nil, err
-	}
-	return &userId, nil
-}
-
-func (userId *UserId) validate(id UserId) (err error) {
-	defer iterrors.Wrap(&err, "userId.validate(%q)", id)
+func NewUserId(id string) (_ *UserId, err error) {
+	defer iterrors.Wrap(&err, "userId.NewUserId(%s)", id)
 	if id == "" {
-		return fmt.Errorf("userId is required")
+		return nil, fmt.Errorf("userId is required")
 	}
-	return nil
+	userId := UserId(id)
+	return &userId, nil
 }
