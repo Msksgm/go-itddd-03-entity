@@ -13,7 +13,8 @@ type User struct {
 }
 
 func NewUser(userId UserId, name string) (*User, error) {
-	user := &User{userId: userId, name: ""}
+	user := new(User)
+	user.userId = userId
 
 	if err := user.ChangeUserName(name); err != nil {
 		return nil, err
