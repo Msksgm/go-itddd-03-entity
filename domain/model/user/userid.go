@@ -7,22 +7,22 @@ import (
 )
 
 type UserId struct {
-	userId string
+	id string
 }
 
 func NewUserId(id string) (*UserId, error) {
 	userId := new(UserId)
-	if err := userId.setUserId(id); err != nil {
+	if err := userId.setId(id); err != nil {
 		return nil, err
 	}
 	return userId, nil
 }
 
-func (userId *UserId) setUserId(id string) (err error) {
-	defer iterrors.Wrap(&err, "userId.setUserId()")
+func (userId *UserId) setId(id string) (err error) {
+	defer iterrors.Wrap(&err, "userId.setId()")
 	if id == "" {
 		return fmt.Errorf("userId is required")
 	}
-	userId.userId = id
+	userId.id = id
 	return nil
 }

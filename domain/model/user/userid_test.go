@@ -12,14 +12,14 @@ func TestNewUserId(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-		if !reflect.DeepEqual(userId.userId, id) {
-			t.Errorf("userId.userId %v should be %v", userId.userId, id)
+		if !reflect.DeepEqual(userId.id, id) {
+			t.Errorf("userId.userId %v should be %v", userId.id, id)
 		}
 	})
 	t.Run("fail userId is empty", func(t *testing.T) {
 		userId, err := NewUserId("")
 
-		want := "userId.setUserId(): userId is required"
+		want := "userId.setId(): userId is required"
 		if got := err.Error(); want != got {
 			t.Errorf("got %s, want %s", got, want)
 		}
