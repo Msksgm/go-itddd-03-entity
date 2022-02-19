@@ -14,12 +14,23 @@ type User struct {
 
 func NewUser(userId UserId, name string) (*User, error) {
 	user := new(User)
-	user.userId = userId
+
+	if err := user.setUserId(userId); err != nil {
+		return nil, err
+	}
 
 	if err := user.ChangeUserName(name); err != nil {
 		return nil, err
 	}
 	return user, nil
+}
+
+func (user *User) setUserId(userId UserId) (err error) {
+	if userId.userId == "" {
+		return fmt.Errorf("userId is required")
+	}
+	user.userId = userId
+	return nil
 }
 
 func (user *User) ChangeUserName(name string) (err error) {
