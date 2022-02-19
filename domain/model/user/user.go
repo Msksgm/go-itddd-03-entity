@@ -26,6 +26,7 @@ func NewUser(userId UserId, name string) (*User, error) {
 }
 
 func (user *User) setUserId(userId UserId) (err error) {
+	defer iterrors.Wrap(&err, "user.setUserId(%q)", userId)
 	if userId.userId == "" {
 		return fmt.Errorf("userId is required")
 	}
