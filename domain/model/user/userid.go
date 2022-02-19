@@ -11,16 +11,16 @@ type UserId struct {
 }
 
 func NewUserId(id string) (*UserId, error) {
-	userId := &UserId{userId: id}
-	if err := userId.validate(); err != nil {
+	if err := validateId(id); err != nil {
 		return nil, err
 	}
+	userId := &UserId{userId: id}
 	return userId, nil
 }
 
-func (UserId *UserId) validate() (err error) {
-	defer iterrors.Wrap(&err, "UserId.validate()")
-	if UserId.userId == "" {
+func validateId(id string) (err error) {
+	defer iterrors.Wrap(&err, "userid.go validateId()")
+	if id == "" {
 		return fmt.Errorf("userId is required")
 	}
 	return nil
