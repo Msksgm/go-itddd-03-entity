@@ -19,7 +19,7 @@ func TestNewUserId(t *testing.T) {
 	t.Run("fail userId is empty", func(t *testing.T) {
 		userId, err := NewUserId("")
 
-		want := "userid.go validateId(): userId is required"
+		want := "userId.setUserId(): userId is required"
 		if got := err.Error(); want != got {
 			t.Errorf("got %s, want %s", got, want)
 		}
