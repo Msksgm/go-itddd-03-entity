@@ -20,19 +20,19 @@ zenn の記事「[Go でエンティティを実装（「入門ドメイン駆�
 
 ```bash
 > go run main.go
-2022/02/18 13:34:31 UserId.validate(): userId is required
+2022/02/20 13:17:47 NewUserId(): userId is required
 exit status 1
 ```
 
 ```bash
 > go run main.go -id a
-2022/02/18 13:34:55 user.ChangeUserName(""): name is required
+2022/02/20 13:18:04 user.ChangeUserName(""): name is required
 exit status 1
 ```
 
 ```bash
 > go run main.go -id a -name na
-2022/02/18 13:35:10 user.ChangeUserName("na"): name na is less than three characters long
+2022/02/20 13:18:31 user.ChangeUserName("na"): name na is less than three characters long
 exit status 1
 ```
 
@@ -44,12 +44,10 @@ exit status 1
 === RUN   TestNewUser
 === RUN   TestNewUser/success
 === RUN   TestNewUser/fail_name_is_empty
-=== RUN   TestNewUser/fail_name_is_empty#01
 === RUN   TestNewUser/fail_name_is_less_than_three_characters
 --- PASS: TestNewUser (0.00s)
     --- PASS: TestNewUser/success (0.00s)
     --- PASS: TestNewUser/fail_name_is_empty (0.00s)
-    --- PASS: TestNewUser/fail_name_is_empty#01 (0.00s)
     --- PASS: TestNewUser/fail_name_is_less_than_three_characters (0.00s)
 === RUN   TestChangeUserName
 === RUN   TestChangeUserName/success
@@ -72,9 +70,9 @@ exit status 1
     --- PASS: TestNewUserId/success (0.00s)
     --- PASS: TestNewUserId/fail_userId_is_empty (0.00s)
 PASS
-ok      github.com/Msksgm/go-itddd-03-entity/domain/model/user  0.456s
+ok      github.com/Msksgm/go-itddd-03-entity/domain/model/user  0.470s
 === RUN   TestWrap
 --- PASS: TestWrap (0.00s)
 PASS
-ok      github.com/Msksgm/go-itddd-03-entity/iterrors   0.284s
+ok      github.com/Msksgm/go-itddd-03-entity/iterrors   0.287s
 ```
