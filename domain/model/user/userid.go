@@ -10,19 +10,12 @@ type UserId struct {
 	id string
 }
 
-func NewUserId(id string) (*UserId, error) {
+func NewUserId(id string) (_ *UserId, err error) {
+	defer iterrors.Wrap(&err, "NewUserId(%s)", id)
 	userId := new(UserId)
-	if err := userId.setId(id); err != nil {
-		return nil, err
-	}
-	return userId, nil
-}
-
-func (userId *UserId) setId(id string) (err error) {
-	defer iterrors.Wrap(&err, "userId.setId()")
 	if id == "" {
-		return fmt.Errorf("userId is required")
+		return nil, fmt.Errorf("userId is required")
 	}
 	userId.id = id
-	return nil
+	return userId, nil
 }
