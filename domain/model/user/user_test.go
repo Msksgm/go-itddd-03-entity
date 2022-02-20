@@ -1,7 +1,6 @@
 package user
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
@@ -21,15 +20,6 @@ func TestNewUser(t *testing.T) {
 		want := &User{userId: UserId{id: "id"}, name: "name"}
 		if diff := cmp.Diff(want, got, cmp.AllowUnexported(User{}, UserId{})); diff != "" {
 			t.Errorf("mismatch (-want, +got):\n%s", diff)
-		}
-	})
-	t.Run("fail name is empty", func(t *testing.T) {
-		userId := &UserId{id: ""}
-		name := "name"
-		_, err := NewUser(*userId, name)
-		want := fmt.Sprintf("user.setUserId(%q): userId is required", *userId)
-		if got := err.Error(); got != want {
-			t.Errorf("got %s, want %s", got, want)
 		}
 	})
 	t.Run("fail name is empty", func(t *testing.T) {
